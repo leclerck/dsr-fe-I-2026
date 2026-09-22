@@ -14,13 +14,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
     <header class="header">
 
-        <img class="logo" src="img/logo.png" alt="Logo de Alien Store: un alien de videojuegos" width="120" height="120">
+        <img class="logo" src="assets/img/logo.png" alt="Logo de Alien Store: un alien de videojuegos" width="120" height="120">
 
         <h1>Alien Store</h1>
         <p class="subtitulo">Gaming & más</p>
@@ -28,13 +29,21 @@
     </header>
 
     <nav class="menu" aria-label="Menú">
+        <div class="menu-bar">
+            <span class="menu-label">Menú</span>
+            <button class="menu-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#menuCollapse" aria-controls="menuCollapse" aria-expanded="false" aria-label="Abrir o cerrar menú">
+                <span class="menu-toggle-icon" aria-hidden="true"></span>
+            </button>
+        </div>
 
-        <ul class="menu-lista">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#categorias">Categorías</a></li>
-            <li><a href="#productos">Productos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
+        <div class="collapse menu-collapse" id="menuCollapse">
+            <ul class="menu-lista">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
     </nav>
 
     <main class="content">
@@ -54,40 +63,49 @@
 
             <h2>Productos Destacados</h2>
 
-            <ul class="grid-productos">
+            <p id="productos-error" class="productos-error" hidden>No se pudieron cargar los productos.</p>
 
-                <li>
-                    <article class="card">
-                        <img class="card-img" src="img/ufc-6.jpg" alt="Portada del videojuego UFC 6" width="160" height="200">
-                        <h3 class="card-titulo">UFC 6</h3>
-                        <p class="card-desc">Videojuego de combate de artes marciales mixtas con combate por resistencia y exploración libre. Disponible para PC y consola.</p>
-                    </article>
-                </li>
+            <!-- Móvil: 1 producto por slide -->
+            <div id="productosCarouselMobile" class="carousel slide productos-carousel d-md-none" data-bs-wrap="true" data-bs-interval="4000">
+                <div class="carousel-indicators"></div>
+                <div class="carousel-inner"></div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productosCarouselMobile" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productosCarouselMobile" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
 
-                <li>
-                    <article class="card">
-                        <img class="card-img" src="img/puyo-puyo.jpg" alt="Portada del videojuego Puyo Puyo" width="160" height="200">
-                        <h3 class="card-titulo">Puyo Puyo</h3>
-                        <p class="card-desc">Videojuego de puzzle con combate por resistencia y exploración libre. Disponible para PC y consola.</p>
-                    </article>
-                </li>
+            <!-- Tablet: 2 productos por slide -->
+            <div id="productosCarouselTablet" class="carousel slide productos-carousel d-none d-md-block d-lg-none" data-bs-wrap="true" data-bs-interval="4000">
+                <div class="carousel-indicators"></div>
+                <div class="carousel-inner"></div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productosCarouselTablet" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productosCarouselTablet" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
 
-                <li>
-                    <article class="card">
-                        <img class="card-img" src="img/nintendo-switch-2.jpg" alt="Foto de la consola Nintendo Switch 2" width="160" height="200">
-                        <h3 class="card-titulo">Nintendo Switch 2</h3>
-                        <p class="card-desc">Consola de videojuegos portátil y de sobremesa, con pantalla táctil y giroscopio.</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article class="card">
-                        <img class="card-img" src="img/rhythm-heaven.jpg" alt="Foto del videojuego Rhythm Heaven" width="160" height="200">
-                        <h3 class="card-titulo">Rhythm Heaven</h3>
-                        <p class="card-desc">Videojuego de ritmo con música y baile, con múltiples modos de juego y una historia de más de veinte horas.</p>
-                    </article>
-                </li>
-            </ul>
+            <!-- Escritorio: 4 productos por slide -->
+            <div id="productosCarouselDesktop" class="carousel slide productos-carousel d-none d-lg-block" data-bs-wrap="true" data-bs-interval="4000">
+                <div class="carousel-indicators"></div>
+                <div class="carousel-inner"></div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productosCarouselDesktop" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productosCarouselDesktop" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
         </section>
 
         <section class="section section-categories" id="categorias">
@@ -133,6 +151,17 @@
         <p>Copyright &copy; 2026 Alien Store.</p>
 
     </footer>
+
+    <div id="carrito-toast" class="carrito-toast" role="status" aria-live="polite" aria-hidden="true">
+        <div class="carrito-toast-ticket">
+            <span class="carrito-toast-icon" aria-hidden="true">🎟</span>
+            <p class="carrito-toast-titulo">Listo</p>
+            <p class="carrito-toast-nombre" id="carrito-toast-nombre"></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="assets/js/app.js"></script>
 
 </body>
 
