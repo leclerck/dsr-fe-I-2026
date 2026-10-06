@@ -2,56 +2,56 @@
   "productos": [
     {
       "titulo": "UFC 6",
-      "precio": "$5.900",
+      "precio": "5900",
       "descripcion": "Disponible para PC y consola",
       "imagen": "assets/img/ufc-6.jpg",
       "alt": "Portada del videojuego UFC 6"
     },
     {
       "titulo": "Puyo Puyo",
-      "precio": "$4.900",
+      "precio": "4900",
       "descripcion": "Disponible para PC y consola",
       "imagen": "assets/img/puyo-puyo.jpg",
       "alt": "Portada del videojuego Puyo Puyo"
     },
     {
       "titulo": "Nintendo Switch 2",
-      "precio": "$129.000",
+      "precio": "129000",
       "descripcion": "Consola",
       "imagen": "assets/img/nintendo-switch-2.jpg",
       "alt": "Foto de la consola Nintendo Switch 2"
     },
     {
       "titulo": "Rhythm Heaven",
-      "precio": "$4.900",
+      "precio": "4900",
       "descripcion": "Disponible para PS5",
       "imagen": "assets/img/rhythm-heaven.jpg",
       "alt": "Foto del videojuego Rhythm Heaven"
     },
     {
       "titulo": "The Last of Us",
-      "precio": "$19.900",
+      "precio": "19900",
       "descripcion": "Disponible para PS4",
       "imagen": "assets/img/the-last-of-us.jpg",
       "alt": "Portada del videojuego The Last of Us"
     },
     {
       "titulo": "Resident Evil 4",
-      "precio": "$19.900",
+      "precio": "19900",
       "descripcion": "Disponible para PS2",
       "imagen": "assets/img/resident-evil-4.jpg",
       "alt": "Portada del videojuego Resident Evil 4"
     },
     {
       "titulo": "PlayStation 5",
-      "precio": "$125.000",
+      "precio": "125000",
       "descripcion": "Consola",
       "imagen": "assets/img/ps5.png",
       "alt": "Foto de la consola PlayStation 5"
     },
     {
       "titulo": "Fifa 25",
-      "precio": "$29.900",
+      "precio": "29900",
       "descripcion": "Disponible para PC",
       "imagen": "assets/img/fifa-25.png",
       "alt": "Foto del videojuego Fifa 25"

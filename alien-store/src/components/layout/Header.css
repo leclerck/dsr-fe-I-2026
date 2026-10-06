@@ -1,0 +1,51 @@
+/* 
+Estilos para el header de la página
+*/
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: var(--espacio-grande) var(--espacio);
+    text-align: center;
+    background: var(--color-superficie);
+    border-bottom: 3px solid var(--color-acento-oscuro);
+}
+
+.logo { 
+    max-width: 100px;
+    transition: color var(--transicion), background var(--transicion),
+        border-color var(--transicion), transform var(--transicion),
+        box-shadow var(--transicion);
+}
+
+.header:hover .logo {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.5));
+}
+
+.header h1 {
+    margin: 0;
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    text-transform: uppercase;
+}
+
+@media (min-width: 1024px) {
+    .logo { max-width: 120px; }
+}
+
+.subtitulo {
+    margin: 0;
+    color: var(--color-acento-claro);
+    font-family: var(--fuente-titulos);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.header-bienvenida {
+    max-width: 36rem;
+    margin: 0.25rem 0 0;
+    color: var(--color-texto-suave);
+    font-size: 0.9rem;
+}
