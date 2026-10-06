@@ -9,7 +9,7 @@ Componente para mostrar un producto en la tarjeta de producto
 function ProductCard({ producto, onAdd, enCarrito }) {
     return (
         <article className="producto-card">
-            <img className="producto-img" src={`/${producto.imagen}`} alt={producto.alt} width="160" height="200" />
+            <img className="producto-img" src={`${import.meta.env.BASE_URL}${producto.imagen}`} alt={producto.alt} width="160" height="200" />
             <h3 className="producto-titulo">{producto.titulo}</h3>
             <span className="producto-precio">{formatearPrecio(parsePrecio(producto.precio))}</span>
             <p className="producto-desc">{producto.descripcion}</p>

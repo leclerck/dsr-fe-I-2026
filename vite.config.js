@@ -6,5 +6,6 @@ Configuración de Vite
 */
 export default defineConfig({
   plugins: [react()],
-  base:"",
+  // Project site: https://leclerck.github.io/dsr-fe-I-2026/
+  base: '/dsr-fe-I-2026/',
 })

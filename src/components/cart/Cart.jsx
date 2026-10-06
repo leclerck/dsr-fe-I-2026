@@ -26,7 +26,7 @@ function Cart({ items, onAgregar, onQuitarUno, onEliminar, onVaciar }) {
                     <ul className="carrito-lista">
                         {items.map(({ producto, cantidad }) => (
                             <li key={producto.titulo} className="carrito-item">
-                                <img className="carrito-item-img" src={`/${producto.imagen}`} alt="" width="48" height="60" />
+                                <img className="carrito-item-img" src={`${import.meta.env.BASE_URL}${producto.imagen}`} alt="" width="48" height="60" />
 
                                 <div className="carrito-item-info">
                                     <p className="carrito-item-titulo">{producto.titulo}</p>

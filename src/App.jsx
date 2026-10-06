@@ -8,7 +8,7 @@ import ProductCarousel from './components/products/ProductCarousel'
 import Cart from './components/cart/Cart'
 import CartToast from './components/cart/CartToast'
 
-const PRODUCTOS_URL = '/assets/data/productos.json'
+const PRODUCTOS_URL = `${import.meta.env.BASE_URL}assets/data/productos.json`
 
 function App() {
   const [productos, setProductos] = useState([])
