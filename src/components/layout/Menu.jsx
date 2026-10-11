@@ -15,8 +15,14 @@ function cerrarMenu() {
 /* 
 Componente para mostrar el menú de la página
 @param {number} cantidadCarrito - Cantidad de productos en el carrito
+@param {Function} onAbrirCatalogo - Abre el catálogo de todos los productos
 */
-function Menu({ cantidadCarrito }) {
+function Menu({ cantidadCarrito, onAbrirCatalogo }) {
+    function irAProductos() {
+        onAbrirCatalogo()
+        cerrarMenu()
+    }
+
     return (
         <nav className="menu" aria-label="Menú">
             <div className="menu-bar">
@@ -36,13 +42,12 @@ function Menu({ cantidadCarrito }) {
                 </div>
             </div>
             <div className="collapse menu-collapse" id="menuCollapse">
-                <ul className="menu-lista" onClick={cerrarMenu}>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#categorias">Categorías</a></li>
-                    <li><a href="#productos">Productos</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                <ul className="menu-lista">
+                    <li><a href="#inicio" onClick={cerrarMenu}>Inicio</a></li>
+                    <li><a href="#productos" onClick={irAProductos}>Productos</a></li>
+                    <li><a href="#contacto" onClick={cerrarMenu}>Contacto</a></li>
                     <li>
-                        <a href="#carrito">
+                        <a href="#carrito" onClick={cerrarMenu}>
                             Carrito
                             <span className="menu-carrito-contador" aria-label={`${cantidadCarrito} productos en el carrito`}>
                                 {cantidadCarrito}

@@ -3,7 +3,7 @@ import './App.css'
 import Header from './components/layout/Header'
 import Menu from './components/layout/Menu'
 import Footer from './components/layout/Footer'
-import Categories from './components/sections/Categories'
+import ProductCatalog from './components/sections/ProductCatalog'
 import ProductCarousel from './components/products/ProductCarousel'
 import Cart from './components/cart/Cart'
 import CartToast from './components/cart/CartToast'
@@ -15,6 +15,7 @@ function App() {
   const [estado, setEstado] = useState('cargando')
   const [carrito, setCarrito] = useState([])
   const [toast, setToast] = useState({ id: 0, nombre: '', visible: false })
+  const [catalogoAbierto, setCatalogoAbierto] = useState(false)
 
   /* 
   Efecto para cargar los productos desde el archivo JSON
@@ -104,11 +105,14 @@ function App() {
   return (
     <>
       <Header />
-      <Menu cantidadCarrito={cantidadCarrito} />
+      <Menu
+        cantidadCarrito={cantidadCarrito}
+        onAbrirCatalogo={() => setCatalogoAbierto(true)}
+      />
 
       <main className="content">
         {/* Sección para mostrar los productos destacados */}
-        <section className="section section-products" id="productos">
+        <section className="section section-products" id="destacados">
           <h2>Productos Destacados</h2>
 
           {estado === 'cargando' && <p className="productos-estado">Cargando productos...</p>}
@@ -124,9 +128,7 @@ function App() {
           )}
         </section>
 
-        {/* Sección para mostrar las categorías de productos y el carrito */}
         <div className="columna-lateral">
-          <Categories />
           <Cart
             items={carrito}
             onAgregar={agregarAlCarrito}
@@ -135,6 +137,14 @@ function App() {
             onVaciar={vaciarCarrito}
           />
         </div>
+
+        <ProductCatalog
+          productos={productos}
+          onAdd={agregarAlCarrito}
+          titulosEnCarrito={carrito.map((item) => item.producto.titulo)}
+          abierto={catalogoAbierto}
+          onToggle={() => setCatalogoAbierto((actual) => !actual)}
+        />
       </main>
 
       <Footer />

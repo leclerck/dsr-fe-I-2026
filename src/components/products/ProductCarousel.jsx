@@ -79,6 +79,7 @@ function CarouselSlides({ productos, porSlide, onAdd, titulosEnCarrito }) {
                                         producto={producto}
                                         onAdd={onAdd}
                                         enCarrito={titulosEnCarrito.includes(producto.titulo)}
+                                        compacto
                                     />
                                 </div>
                             ))}

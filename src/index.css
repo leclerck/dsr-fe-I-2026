@@ -56,7 +56,7 @@ h1, h2, h3 {
 
 img { max-width: 100%; height: auto; }
 
-a, .producto-card, .section, .lista-categorias li {
+a, .producto-card, .section, .lista-categorias-filtro, .catalogo-titulo {
     transition: color var(--transicion), background var(--transicion),
         border-color var(--transicion), transform var(--transicion),
         box-shadow var(--transicion);

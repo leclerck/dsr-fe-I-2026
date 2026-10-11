@@ -20,7 +20,7 @@ function Cart({ items, onAgregar, onQuitarUno, onEliminar, onVaciar }) {
             <h2>Carrito</h2>
 
             {items.length === 0 ? (
-                <p className="carrito-vacio">Tu carrito está vacío.</p>
+                <p className="carrito-vacio">Tu carrito está vacío. ¿Por qué?</p>
             ) : (
                 <>
                     <ul className="carrito-lista">

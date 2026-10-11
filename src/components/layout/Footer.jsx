@@ -1,4 +1,6 @@
-/* 
+import ContactForm from './ContactForm'
+
+/*
 Componente para mostrar el footer de la página
 */
 function Footer() {
@@ -21,9 +23,14 @@ function Footer() {
                 </ul>
             </div>
 
+            <div className="footer-bloque footer-bloque--formulario">
+                <h2>Te escuchamos!</h2>
+                <ContactForm />
+            </div>
+
             <p>Copyright &copy; 2026 Alien Store.</p>
         </footer>
-    );
+    )
 }
 
-export default Footer;
+export default Footer

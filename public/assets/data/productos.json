@@ -3,58 +3,98 @@
     {
       "titulo": "UFC 6",
       "precio": "5900",
-      "descripcion": "Disponible para PC y consola",
+      "descripcion": "Increíble juego de combate. Disponible para PC y consola",
+      "categoria": "Combate",
       "imagen": "assets/img/ufc-6.jpg",
       "alt": "Portada del videojuego UFC 6"
     },
     {
       "titulo": "Puyo Puyo",
       "precio": "4900",
-      "descripcion": "Disponible para PC y consola",
+      "descripcion": "Juego de puzzle. Disponible para PC y consola",
+      "categoria": "Puzzle",
       "imagen": "assets/img/puyo-puyo.jpg",
       "alt": "Portada del videojuego Puyo Puyo"
     },
     {
       "titulo": "Nintendo Switch 2",
       "precio": "129000",
-      "descripcion": "Consola",
+      "descripcion": "Consola Nintendo Switch 2 de ultima generación",
+      "categoria": "Consola",
       "imagen": "assets/img/nintendo-switch-2.jpg",
       "alt": "Foto de la consola Nintendo Switch 2"
     },
     {
       "titulo": "Rhythm Heaven",
       "precio": "4900",
-      "descripcion": "Disponible para PS5",
+      "descripcion": "Juego de ritmo familiar. Disponible para PS5",
+      "categoria": "Ritmo",
       "imagen": "assets/img/rhythm-heaven.jpg",
       "alt": "Foto del videojuego Rhythm Heaven"
     },
     {
       "titulo": "The Last of Us",
       "precio": "19900",
-      "descripcion": "Disponible para PS4",
+      "descripcion": "Juego de acción y aventura. Disponible para PS4",
+      "categoria": "Acción",
       "imagen": "assets/img/the-last-of-us.jpg",
       "alt": "Portada del videojuego The Last of Us"
     },
     {
       "titulo": "Resident Evil 4",
       "precio": "19900",
-      "descripcion": "Disponible para PS2",
+      "descripcion": "Juego de horror y supervivencia. Disponible para PS2",
+      "categoria": "Acción",
       "imagen": "assets/img/resident-evil-4.jpg",
       "alt": "Portada del videojuego Resident Evil 4"
     },
     {
       "titulo": "PlayStation 5",
       "precio": "125000",
-      "descripcion": "Consola",
+      "descripcion": "Consola PlayStation 5 de ultima generación",
+      "categoria": "Consola",
       "imagen": "assets/img/ps5.png",
       "alt": "Foto de la consola PlayStation 5"
     },
     {
       "titulo": "Fifa 25",
       "precio": "29900",
-      "descripcion": "Disponible para PC",
+      "descripcion": "Juego de Futbol. Disponible para PC",
+      "categoria": "Deportes",
       "imagen": "assets/img/fifa-25.png",
       "alt": "Foto del videojuego Fifa 25"
+    },
+    {
+      "titulo": "Silla Gamer Rosada",
+      "precio": "129000",
+      "descripcion": "Es rosada y es muy cómoda",
+      "categoria": "Accesorios",
+      "imagen": "assets/img/silla-gamer-rosada.png",
+      "alt": "Foto de la silla gamer rosada"
+    },
+    {
+      "titulo": "Mouse ergonómico RGB",
+      "precio": "49000",
+      "descripcion": "Es ergonómico y es muy cómodo",
+      "categoria": "Accesorios",
+      "imagen": "assets/img/mouse-ergonomico-rgb.jpg",
+      "alt": "Foto del mouse ergonómico RGB"
+    },
+    {
+      "titulo": "Taiko no Tatsujin",
+      "precio": "4900",
+      "descripcion": "Golpea tambores con el teclado. Disponible para Nintendo Switch",
+      "categoria": "Ritmo",
+      "imagen": "assets/img/taiko-no-tatsujin.jpg",
+      "alt": "Foto del videojuego Taiko no Tatsujin"
+    },
+    {
+      "titulo": "Máquina Dance Dance Revolution",
+      "precio": "4999000",
+      "descripcion": "Máquina de baile Konami",
+      "categoria": "Ritmo",
+      "imagen": "assets/img/maquina-DDR-Extreme.jpg",
+      "alt": "Foto de la máquina Dance Dance Revolution Extreme"
     }
   ]
 }
