@@ -32,10 +32,10 @@ alien-store/
 │   ├── main.jsx              ← Bootstrap CSS → bootstrap → index.css
 │   ├── utils/precios.js      ← parsePrecio / formatearPrecio
 │   └── components/
-│       ├── layout/           ← Header, Menu, Footer (+ CSS propios)
+│       ├── layout/           ← Header, Menu, Footer, ContactForm
 │       ├── products/         ← ProductCard, ProductCarousel
 │       ├── cart/             ← Cart, CartToast
-│       └── sections/         ← Categories
+│       └── sections/         ← ProductCatalog
 ```
 
 **Carga de estilos:** Bootstrap CSS → `index.css` → CSS de componentes / `App.css` (el orden en `main.jsx` evita que Bootstrap pise los estilos propios).
@@ -54,7 +54,7 @@ Paleta oscura con contraste **WCAG AA**. Cambios globales se hacen editando `:ro
 |---|---|---|
 | `--color-fondo` | `#0f172a` | Fondo de página |
 | `--color-superficie` | `#1e293b` | Header, nav, secciones, footer |
-| `--color-superficie-alta` | `#334155` | Tarjetas y categorías |
+| `--color-superficie-alta` | `#334155` | Tarjetas y filtros |
 | `--color-texto` / `--color-texto-suave` | `#f1f5f9` / `#cbd5e1` | Texto principal y secundario |
 | `--color-acento` / `-oscuro` / `-claro` | `#a78bfa` / `#7c3aed` / `#c4b5fd` | Acentos, hover, precios |
 | `--color-borde` | `#475569` | Bordes |
@@ -72,12 +72,12 @@ Paleta oscura con contraste **WCAG AA**. Cambios globales se hacen editando `:ro
 Logo, título, subtítulo y mensaje de bienvenida (`.header-bienvenida`) en un solo bloque. `id="inicio"` para el enlace del menú. Hover: escala + brillo del logo.
 
 ### Navegación (`.menu`)
-Sticky. **Móvil (&lt;768px):** barra con hamburguesa + icono de carrito (enlace a `#carrito` con badge de cantidad); Collapse (`#menuCollapse`) se cierra al pulsar un enlace. **≥768px:** enlaces en fila, sin barra móvil.
+Sticky. Enlaces: **Inicio**, **Productos** (`#productos`, abre el catálogo), **Contacto**, **Carrito**. **Móvil (&lt;768px):** barra con hamburguesa + icono de carrito (enlace a `#carrito` con badge de cantidad); Collapse (`#menuCollapse`) se cierra al pulsar un enlace. **≥768px:** enlaces en fila, sin barra móvil.
 
 ### Secciones (`.content`, `.section`)
-Contenedor flex con max-width 1200px. En desktop: productos (~65%) + columna lateral (~35%) con Categorías y Carrito.
+Contenedor flex con max-width 1200px. En desktop: destacados (`#destacados`, ~65%) + columna lateral (~35%) solo con el carrito. El catálogo (`.section-catalogo`) va debajo, a ancho completo (`flex: 1 1 100%`).
 
-### Productos (`.productos-carousel`)
+### Productos destacados (`.productos-carousel`, `#destacados`)
 Un solo carrusel React (`#productosCarousel`) que se remonta al cambiar el breakpoint (`key={porSlide}`):
 
 | Viewport | Productos/slide |
@@ -88,15 +88,23 @@ Un solo carrusel React (`#productosCarousel`) que se remonta al cambiar el break
 
 Opciones: `ride: 'carousel'`, `wrap: true` (bucle), `interval: 4000`. Datos desde `public/assets/data/productos.json` con `fetch` + `useEffect` / `useState` (`estado`: `cargando` \| `listo` \| `error`).
 
-Clases: `.producto-card`, `.producto-img`, `.producto-titulo`, `.producto-precio`, `.producto-desc`, `.producto-btn-carrito`.
+`ProductCard` recibe `compacto` en el carrusel:
+
+| | Carrusel (`compacto`) | Catálogo |
+|---|---|---|
+| Descripción | Oculta | Visible (`.producto-desc`) |
+| Botón | Icono carrito + (`.producto-btn-carrito--icono`) | Texto «Añadir al carrito» |
+| Precio | Hueco fijo sobre el botón (el título absorbe la altura) | Debajo del título |
+
+Imágenes (`.producto-img`): alto fijo **200px**, `object-fit: cover`.
 
 **`:nth-child`:** pares → fondo alterno; primero → borde acento; último → título acento.
 
 **Botón de producto:**
-| Estado | Texto | Estilo |
-|---|---|---|
-| No está en el carrito | Añadir al carrito | Violeta (`.producto-btn-carrito`) |
-| Ya está en el carrito | En Carrito | Teal (`.producto-btn-carrito--en-carrito`), `disabled` |
+| Estado | Catálogo | Carrusel | Estilo |
+|---|---|---|---|
+| No está en el carrito | Añadir al carrito | Icono carrito + | Violeta (`.producto-btn-carrito`) |
+| Ya está en el carrito | En Carrito | Icono carrito (sin +) | Teal (`.producto-btn-carrito--en-carrito`), `disabled` |
 
 ### Carrito (`.section-cart`, `#carrito`)
 
@@ -134,11 +142,23 @@ Confirmación tipo ticket al añadir. Misma idea que la versión estática:
 
 Duración: **2 s**. Transición CSS: **0.3 s**. Visibilidad por clase (no `hidden`). `aria-live="polite"`.
 
-### Categorías (`.lista-categorias`)
-Etiquetas tipo píldora con hover violeta.
+### Catálogo (`.section-catalogo`, `#productos`)
+Colapsado inicialmente al cargar (`catalogoAbierto` en `App.jsx`). Se abre con el enlace **Productos** del menú o con el título **Todos los productos** / el botón chevron (`.catalogo-toggle`). El mismo control lo cierra.
+
+Filtros (`.lista-categorias`): píldoras `Todas` + `categoria` única de `productos.json`, ordenadas. La activa usa `.lista-categorias-filtro--activo`. El grid (`.catalogo-grid`) reutiliza `ProductCard` y tiene `max-height: 60vh` con scroll.
 
 ### Footer (`.footer`, `#contacto`)
-Contacto (`.direccion`) y redes (`.rrss-lista`). Instagram/YouTube con colores de marca en hover (`:nth-child`).
+Dirección (`.direccion`), redes (`.rrss-lista`) y formulario (`ContactForm`). Instagram/YouTube con colores de marca en hover (`:nth-child`).
+
+**Formulario** (validación en el cliente, formato antes que longitud):
+
+| Campo | Regla |
+|---|---|
+| Nombre | Solo letras (admite espacio, guion y apóstrofo). 2–30 caracteres |
+| Correo | Formato `usuario@dominio.ext`, sin espacios. Máximo 80 |
+| Mensaje | 10–400 caracteres |
+
+Campo inválido: borde rojo (`.contacto-campo--invalido`) y alerta (`.contacto-alerta`, `role="alert"`). Si el envío es válido, se limpia el formulario y se muestra «Mensaje enviado. Gracias por escribirnos.» No hay backend.
 
 ---
 
@@ -148,7 +168,7 @@ Contacto (`.direccion`) y redes (`.rrss-lista`). Instagram/YouTube con colores d
 |---|---|---|---|
 | &lt; 768px | Hamburguesa + icono carrito | 1/slide | Columna |
 | ≥ 768px | Fila | 2/slide | Columna; footer en fila |
-| ≥ 1024px | Fila | 4/slide | Productos 65% + lateral 35%; carrito con scroll |
+| ≥ 1024px | Fila | 4/slide | Destacados 65% + carrito 35%; catálogo al 100% debajo; carrito con scroll |
 
 Media queries: `768px`, `1024px` (`index.css`, `App.css`, `Menu.css`, `Header.css`).
 
@@ -156,7 +176,7 @@ Media queries: `768px`, `1024px` (`index.css`, `App.css`, `Menu.css`, `Header.cs
 
 ## Hover y accesibilidad
 
-Hover en logo, menú, icono de carrito, secciones, tarjetas, botones, categorías y RRSS. `:focus-visible` en menú, RRSS y botones. Toast con `aria-live`. También: `scroll-behavior: smooth`, `alt` en imágenes, `aria-label` en nav, carrusel e icono de carrito.
+Hover en logo, menú, icono de carrito, secciones, tarjetas, botones, filtros y RRSS. `:focus-visible` en menú, RRSS, botones y campos del formulario. Toast con `aria-live`. Catálogo: `aria-expanded` en el título y el chevron. Formulario: `aria-invalid` y `aria-describedby` en cada campo. También: `scroll-behavior: smooth`, `alt` en imágenes, `aria-label` en nav, carrusel e icono de carrito.
 
 ---
 
@@ -167,9 +187,10 @@ Hover en logo, menú, icono de carrito, secciones, tarjetas, botones, categoría
 | `.header`, `.logo`, `.subtitulo`, `.header-bienvenida` | Cabecera |
 | `.menu`, `.menu-bar`, `.menu-acciones`, `.menu-carrito-icono`, `.menu-toggle`, `.menu-lista` | Navegación |
 | `.content`, `.section`, `.columna-lateral` | Contenido |
-| `#productosCarousel`, `.productos-carousel` | Carrusel |
-| `.producto-card`, `.producto-*`, `.producto-btn-carrito--en-carrito` | Productos |
+| `#destacados`, `#productosCarousel`, `.productos-carousel` | Carrusel de destacados |
+| `.producto-card`, `.producto-card--compacto`, `.producto-*`, `.producto-btn-carrito--icono`, `.producto-btn-carrito--en-carrito` | Productos |
+| `#productos`, `.section-catalogo`, `.catalogo-titulo`, `.catalogo-toggle`, `.catalogo-grid` | Catálogo |
+| `.lista-categorias`, `.lista-categorias-filtro--activo` | Filtros del catálogo |
 | `#carrito`, `.carrito-lista`, `.carrito-item`, `.carrito-btn` | Carrito |
 | `.carrito-toast`, `.carrito-toast-*` | Toast |
-| `.lista-categorias` | Categorías |
-| `.footer`, `.direccion`, `.rrss-lista` | Pie de página |
+| `.footer`, `.direccion`, `.rrss-lista`, `.contacto-form`, `.contacto-alerta` | Pie de página y formulario |
